@@ -40,7 +40,7 @@ langGo="langs/langs.go"
 echo "package langs
 
 // Gitignores is the generated map of language -> gitignore
-var Gitignores = map[string]string{" > $langGo
+var Gitignores = map[string][]byte{" > $langGo
 
 gitignores=($clonedLocation/*.gitignore)
 count=${#gitignores[@]}
@@ -51,9 +51,9 @@ let "start=0"
 for gitignore in $clonedLocation/*.gitignore; do
   lang=`basename $gitignore .gitignore`
 
-  printf "  \"%s\": \`" $lang >> $langGo
+  printf "  \"%s\": []byte(\`" $lang >> $langGo
   cat $gitignore | sed 's/`/` + "`" + `/g'>> $langGo
-  printf "\`,\n" >> $langGo
+  printf "\`),\n" >> $langGo
   let "start++"
   progressbar $start $count
 done

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/codegangsta/cli"
@@ -16,18 +15,25 @@ func main() {
 
 	commands := []cli.Command{}
 
-	for lang, gitignore := range langs.Gitignores {
+	for l := range langs.Gitignores {
+		lang := l
 		command := cli.Command{
 			Name:  lang,
-			Usage: fmt.Sprintf("write the gitignore for %s", lang),
+			Usage: "",
 			Action: func(c *cli.Context) {
+				gitignore, ok := langs.Gitignores[lang]
+
+				if !ok {
+					panic(ok)
+				}
+
 				f, err := os.Create(".gitignore")
 				if err != nil {
 					panic(err)
 				}
 				defer f.Close()
 
-				f.WriteString(gitignore)
+				f.Write(gitignore)
 				f.Sync()
 			},
 		}
