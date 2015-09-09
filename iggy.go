@@ -33,7 +33,7 @@ func main() {
 				}
 				defer f.Close()
 
-				f.Write(gitignore)
+				f.WriteString(gitignore)
 				f.Sync()
 			},
 		}
