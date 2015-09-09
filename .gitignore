@@ -26,3 +26,6 @@ _testmain.go
 # Generated code
 ghignore
 langs
+
+# Built binary
+iggy

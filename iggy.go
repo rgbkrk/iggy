@@ -1,3 +1,4 @@
+//go:generate ./gen.sh
 package main
 
 import (
