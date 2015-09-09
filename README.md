@@ -2,7 +2,7 @@
 
 ![baby iggy](https://cloud.githubusercontent.com/assets/836375/9753627/13b8bc50-5685-11e5-940d-dc4c6c3473cb.png)
 
-Grabs gitignores for you, writes them to `.gitignore`.
+Grabs a gitignore for you, and writes it to `.gitignore`.
 
 ## Why
 
