@@ -54,7 +54,7 @@ go build
 
 ## Roadmap
 
-* [ ] Generate gitignores based on name
+* [X] Generate gitignores based on name
 * [ ] Allow for aliases (e.g. node, Node, iojs, JavaScript)
 * [ ] Customize codegangsta/cli to make simpler output
 * [ ] Provide option of writing to stdout instead of file
