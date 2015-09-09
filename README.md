@@ -59,4 +59,4 @@ go build
 * [ ] Customize codegangsta/cli to make simpler output
 * [ ] Provide option of writing to stdout instead of file
 * [ ] Detect language (and prompt) when language not provided
-
+* [ ] Create built binaries *for all*!
