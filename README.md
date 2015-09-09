@@ -45,14 +45,20 @@ _testmain.go
 
 The same can be done for Node, Python, whatever is supported in [github/gitignore](https://github.com/github/gitignore).
 
-## Building
+## Building and Contributing
 
-This package does fun things like generating go code *for the developer*. This is primarily done with a single shell script, `gen.sh`. To get the show on the road, we'll be using `go generate` followed by `go build` (which creates `iggy`:
+This package relies on a shell script `gen.sh` to write the gitignores does fun things like generating go code *for the developer*. This is primarily done with a single shell script, `gen.sh`. To get the show on the road, we'll be using `go generate` followed by `go build` (which creates `iggy`:
+
+To build from a fresh clone of this repository:
 
 ```
 go generate
 go build
 ```
+
+The `go generate` triggers a shell script called `gen.sh` which clones github.com/github/gitignore and writes a big `map[string]string` to `langs/langs.go` of all the gitignores.
+
+Hacking on this package is more about that shell script and the cli interface. Pull requests, patches, and general praise are well appreciated. :smile:
 
 ## Roadmap
 
