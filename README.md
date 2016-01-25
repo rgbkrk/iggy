@@ -47,7 +47,7 @@ The same can be done for Node, Python, whatever is supported in [github/gitignor
 
 ## Building and Contributing
 
-This package relies on a shell script `gen.sh` to write the gitignores does fun things like generating go code *for the developer*. This is primarily done with a single shell script, `gen.sh`. To get the show on the road, we'll be using `go generate` followed by `go build` (which creates `iggy`:
+This package does fun things like generating go code *for the developer*. This is primarily done with a single shell script, `gen.sh`. To get the show on the road, we'll be using `go generate` followed by `go build` (which creates `iggy`:
 
 To build from a fresh clone of this repository:
 
