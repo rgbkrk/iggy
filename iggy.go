@@ -11,10 +11,9 @@ import (
 )
 
 var languageAliases = map[string]string{
-	"js":         "Node",
-	"javascript": "Node",
-	"node":       "Node",
-	"nodejs":     "Node",
+	"js":         "node",
+	"javascript": "node",
+	"nodejs":     "node",
 }
 
 func normalizeLanguage(lang string) string {
