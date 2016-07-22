@@ -2,48 +2,50 @@
 package main
 
 import (
+	"flag"
+	"fmt"
 	"os"
+	"strings"
 
-	"github.com/codegangsta/cli"
 	"github.com/rgbkrk/iggy/langs"
 )
 
+var languageAliases = map[string]string{
+	"js":         "Node",
+	"javascript": "Node",
+	"node":       "Node",
+	"nodejs":     "Node",
+}
+
+func normalizeLanguage(lang string) string {
+	l := strings.ToLower(lang)
+	alias, ok := languageAliases[l]
+	if !ok {
+		return l
+	}
+	return alias
+}
+
 func main() {
-	app := cli.NewApp()
-	app.Name = "iggy"
+	flag.Parse()
+	if len(flag.Args()) != 1 {
+		fmt.Println("Usage: iggy <language>")
+	}
+	lang := normalizeLanguage(flag.Arg(0))
+	gitignore, ok := langs.Gitignores[lang]
 
-	//commands := make([]cli.Command, len(langs.Gitignores))
-
-	commands := []cli.Command{}
-
-	for l := range langs.Gitignores {
-		lang := l
-		command := cli.Command{
-			Name:  lang,
-			Usage: "",
-			Action: func(c *cli.Context) {
-				gitignore, ok := langs.Gitignores[lang]
-
-				if !ok {
-					panic(ok)
-				}
-
-				f, err := os.Create(".gitignore")
-				if err != nil {
-					panic(err)
-				}
-				defer f.Close()
-
-				f.WriteString(gitignore)
-				f.Sync()
-			},
-		}
-
-		commands = append(commands, command)
+	if !ok {
+		fmt.Printf("Language %s not available\n", lang)
+		os.Exit(1)
 	}
 
-	app.Commands = commands
+	f, err := os.Create(".gitignore")
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
 
-	app.Run(os.Args)
+	f.WriteString(gitignore)
+	f.Sync()
 
 }

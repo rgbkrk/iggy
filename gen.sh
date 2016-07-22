@@ -49,7 +49,7 @@ preparebar $count "#"
 let "start=0"
 
 for gitignore in $clonedLocation/*.gitignore; do
-  lang=`basename $gitignore .gitignore`
+  lang=`basename $gitignore .gitignore | tr '[:upper:]' '[:lower:]'`
 
   printf "  \"%s\": \`" $lang >> $langGo
   cat $gitignore | sed 's/`/` + "`" + `/g'>> $langGo
