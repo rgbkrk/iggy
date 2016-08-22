@@ -26,7 +26,7 @@ clonedLocation="ghignore"
 
 if [ ! -d $clonedLocation ]
 then
-  git clone https://github.com/github/gitignore $clonedLocation
+  git clone --depth 1 https://github.com/github/gitignore $clonedLocation
 else
   pushd . >> /dev/null
   cd $clonedLocation
